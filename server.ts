@@ -23,6 +23,17 @@ async function startServer() {
   const stateFilePath = path.join(dataDir, 'portfolio-state.json');
   const manifestFilePath = path.join(dataDir, 'uploads-manifest.json');
 
+  const writeJsonSafely = async (targetPath: string, value: unknown): Promise<void> => {
+    const content = JSON.stringify(value, null, 2);
+
+    try {
+      await fs.promises.writeFile(targetPath, content, 'utf-8');
+    } catch (writeErr) {
+      console.warn('[State Storage] Direct write failed; retrying once:', writeErr);
+      await fs.promises.writeFile(targetPath, content, 'utf-8');
+    }
+  };
+
   // Synchronize and restore any manifest images to disk on server boot
   try {
     if (fs.existsSync(manifestFilePath)) {
@@ -125,53 +136,11 @@ async function startServer() {
     }
   });
 
-  // Dedicated resilient route for /src/assets/images/:filename
-  app.get('/src/assets/images/:filename(*)', async (req, res, next) => {
-    try {
-      const requested = req.params.filename;
-      const foundPath = findImageOnDisk(requested);
-      if (foundPath) {
-        return res.sendFile(foundPath);
-      }
-
-      // Check manifest for dataUrl recovery
-      if (fs.existsSync(manifestFilePath)) {
-        const raw = await fs.promises.readFile(manifestFilePath, 'utf-8');
-        const manifest = JSON.parse(raw);
-        let item = manifest[requested] || manifest[`/src/assets/images/${requested}`] || manifest[`/uploads/${requested}`] || manifest[path.basename(requested)];
-        if (!item) {
-          const baseReq = path.basename(requested).toLowerCase();
-          for (const val of Object.values<any>(manifest)) {
-            if (val?.filename?.toLowerCase() === baseReq || val?.originalFilename?.toLowerCase() === baseReq) {
-              item = val;
-              break;
-            }
-          }
-        }
-        if (item?.dataUrl) {
-          const comma = item.dataUrl.indexOf(',');
-          const base64 = comma !== -1 ? item.dataUrl.slice(comma + 1) : item.dataUrl;
-          const buf = Buffer.from(base64, 'base64');
-          if (buf.length > 0) {
-            const restoredPath = path.join(srcImagesDir, path.basename(requested));
-            await fs.promises.writeFile(restoredPath, buf).catch(() => {});
-            const mime = item.dataUrl.slice(5, comma).split(';')[0] || 'image/jpeg';
-            res.setHeader('Content-Type', mime);
-            return res.send(buf);
-          }
-        }
-      }
-      return next();
-    } catch {
-      return next();
-    }
-  });
-
-  // Serve static folders
+  // Serve static folders. Avoid mounting /src/assets/images here because Vite must serve
+  // transformed asset modules in development; the custom recovery routes above handle
+  // missing persisted files without blocking Vite's client/module requests.
   app.use('/uploads', express.static(uploadsDir));
   app.use('/uploads', express.static(srcImagesDir));
-  app.use('/src/assets/images', express.static(srcImagesDir));
-  app.use('/src/assets/images', express.static(uploadsDir));
   app.use(express.static(publicDir));
 
   // API ROUTE 1: Permanent Image Upload & Multi-Location Disk Storage
@@ -255,9 +224,7 @@ async function startServer() {
         };
         manifest[publicUrl] = manifest[finalFilename];
 
-        const tmpManifest = `${manifestFilePath}.tmp`;
-        await fs.promises.writeFile(tmpManifest, JSON.stringify(manifest, null, 2), 'utf-8');
-        await fs.promises.rename(tmpManifest, manifestFilePath);
+        await writeJsonSafely(manifestFilePath, manifest);
       } catch (manifestErr) {
         console.warn('[Asset Preservation] Manifest update notice:', manifestErr);
       }
@@ -279,12 +246,22 @@ async function startServer() {
   // API ROUTE 2: Get full persistent portfolio state from disk
   app.get('/api/portfolio-state', async (_req, res) => {
     try {
-      if (fs.existsSync(stateFilePath)) {
-        const raw = await fs.promises.readFile(stateFilePath, 'utf-8');
-        const data = JSON.parse(raw);
-        return res.json({ success: true, state: data });
+      if (!fs.existsSync(stateFilePath)) {
+        return res.json({ success: true, state: {} });
       }
-      return res.json({ success: true, state: {} });
+
+      const raw = await fs.promises.readFile(stateFilePath, 'utf-8');
+      const trimmed = raw.trim();
+      if (!trimmed) {
+        return res.json({ success: true, state: {} });
+      }
+
+      try {
+        const data = JSON.parse(trimmed);
+        return res.json({ success: true, state: data });
+      } catch {
+        return res.json({ success: true, state: {} });
+      }
     } catch (err: any) {
       console.error('[State Storage] Error reading portfolio state:', err);
       return res.status(500).json({ error: 'Failed to read state: ' + (err?.message || err) });
@@ -303,7 +280,10 @@ async function startServer() {
       if (fs.existsSync(stateFilePath)) {
         try {
           const raw = await fs.promises.readFile(stateFilePath, 'utf-8');
-          currentState = JSON.parse(raw);
+          const trimmed = raw.trim();
+          if (trimmed) {
+            currentState = JSON.parse(trimmed);
+          }
         } catch {
           currentState = {};
         }
@@ -312,10 +292,7 @@ async function startServer() {
       currentState[key] = data;
       currentState._lastUpdated = new Date().toISOString();
 
-      // Write atomically to stateFilePath
-      const tempPath = `${stateFilePath}.tmp`;
-      await fs.promises.writeFile(tempPath, JSON.stringify(currentState, null, 2), 'utf-8');
-      await fs.promises.rename(tempPath, stateFilePath);
+      await writeJsonSafely(stateFilePath, currentState);
 
       console.log(`[State Storage] Persisted section '${key}' to disk successfully.`);
       return res.json({ success: true, key });
@@ -344,7 +321,8 @@ async function startServer() {
     res.json({ status: 'ok', time: new Date().toISOString() });
   });
 
-  // Vite middleware for development vs static build serving for production
+  // Vite middleware for development vs static build serving for production.
+  // Keep this after all /api routes so JSON endpoints are not intercepted by the SPA fallback.
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
       server: { middlewareMode: true },
