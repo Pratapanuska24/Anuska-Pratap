@@ -720,10 +720,10 @@ export const defaultCorsetEditorialSections: CorsetEditorialSection[] = [
   },
   {
     id: 'corset-02',
-    title: 'CORSET 02 — Corset',
-    name: '',
+    title: 'CORSET 02 — THE SCARLET DUST',
+    name: 'THE SCARLET DUST',
     images: [corset2ImageC41, corset2ImageC42, corset2ImageC43, corset2ImageC44, corset2ImageC45],
-    description: '',
+    description: 'A deep red velvet corset designed with asymmetrical detailing to create a silhouette that feels both bold and elegant. The richness of velvet paired with sharp structure gives the garment a dramatic yet timeless presence.',
   },
   {
     id: 'corset-03',

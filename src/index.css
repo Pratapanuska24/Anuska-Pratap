@@ -1,5 +1,78 @@
 @import "tailwindcss";
 
+:root {
+  --portfolio-star-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 1.5 19.7 11.8 30.5 12.2 22 19.1 24.9 29.5 16 23.3 7.1 29.5 10 19.1 1.5 12.2 12.3 11.8Z' fill='%238b145d' stroke='%23fff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 16 16, auto;
+}
+
+html,
+body,
+#root,
+#root *:not(input):not(textarea):not([contenteditable="true"]) {
+  cursor: var(--portfolio-star-cursor) !important;
+}
+
+.click-dust-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.click-dust {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 0 7px currentColor;
+  transform: translate(-50%, -50%);
+  animation: clickDustFloat 680ms ease-out forwards;
+}
+
+.click-dust-star {
+  width: auto !important;
+  height: auto !important;
+  background: transparent;
+  box-shadow: none;
+  font-size: 17px;
+  line-height: 1;
+  text-shadow: 0 0 8px currentColor;
+  animation: clickStarPop 680ms ease-out forwards;
+}
+
+@keyframes clickDustFloat {
+  0% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dust-x)), calc(-50% + var(--dust-y))) scale(0.1);
+  }
+}
+
+@keyframes clickStarPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(-25deg);
+  }
+  35% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.25) rotate(10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dust-x)), calc(-50% + var(--dust-y))) scale(0.55) rotate(35deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-dust,
+  .click-dust-star {
+    animation-duration: 1ms;
+  }
+}
+
 @keyframes gentleVerticalGlide {
   0% {
     transform: translateY(-14px);

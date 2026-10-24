@@ -57,10 +57,50 @@ const getInitialMode = (): AppMode => {
   return 'landing';
 };
 
+interface ClickSpark {
+  id: number;
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
+  color: string;
+  size: number;
+  star: boolean;
+}
+
 export default function App() {
   const [mode, setMode] = useState<AppMode>(getInitialMode);
   const [soundEnabled] = useState<boolean>(true);
   const [isLandingOpening, setIsLandingOpening] = useState(false);
+  const [clickSparks, setClickSparks] = useState<ClickSpark[]>([]);
+
+  useEffect(() => {
+    let nextId = 0;
+    const handleClick = (event: MouseEvent) => {
+      const colors = ['#f4c542', '#f7d978', '#e98ab5', '#d95f91', '#fff0b3'];
+      const burst: ClickSpark[] = Array.from({ length: 9 }, (_, index) => {
+        const angle = (Math.PI * 2 * index) / 9 + Math.random() * 0.35;
+        const distance = 20 + Math.random() * 30;
+        return {
+          id: nextId++,
+          x: event.clientX,
+          y: event.clientY,
+          dx: Math.cos(angle) * distance,
+          dy: Math.sin(angle) * distance,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          size: 3 + Math.random() * 4,
+          star: index === 0,
+        };
+      });
+      setClickSparks((current) => [...current.slice(-36), ...burst]);
+      window.setTimeout(() => {
+        const firstId = burst[0].id;
+        setClickSparks((current) => current.filter((spark) => spark.id < firstId));
+      }, 750);
+    };
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, []);
 
   // Sync mode changes to URL hash and localStorage
   const updateMode = useCallback((newMode: AppMode) => {
@@ -135,6 +175,25 @@ export default function App() {
 
   return (
     <div className="w-full min-h-screen bg-[#FFF5F7] text-zinc-900 flex flex-col font-sans antialiased">
+      <div className="click-dust-layer" aria-hidden="true">
+        {clickSparks.map((spark) => (
+          <span
+            key={spark.id}
+            className={`click-dust ${spark.star ? 'click-dust-star' : ''}`}
+            style={{
+              left: spark.x,
+              top: spark.y,
+              color: spark.color,
+              width: spark.size,
+              height: spark.size,
+              ['--dust-x' as string]: `${spark.dx}px`,
+              ['--dust-y' as string]: `${spark.dy}px`,
+            } as React.CSSProperties}
+          >
+            {spark.star ? '✦' : ''}
+          </span>
+        ))}
+      </div>
       
       {/* 1. LANDING PAGE (COVER) */}
       {mode === 'landing' && (

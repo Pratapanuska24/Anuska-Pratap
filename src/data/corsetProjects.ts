@@ -54,7 +54,7 @@ export const staticCorsetProjects: CorsetProject[] = [
     id: 'corset-02',
     number: '02',
     title: 'CORSET 02',
-    name: 'Corset',
+    name: 'THE SCARLET DUST',
     images: [
       corset2ImageC41,
       corset2ImageC42,
@@ -62,7 +62,7 @@ export const staticCorsetProjects: CorsetProject[] = [
       corset2ImageC44,
       corset2ImageC45,
     ],
-    description: '',
+    description: 'A deep red velvet corset designed with asymmetrical detailing to create a silhouette that feels both bold and elegant. The richness of velvet paired with sharp structure gives the garment a dramatic yet timeless presence.',
   },
   {
     id: 'corset-03',

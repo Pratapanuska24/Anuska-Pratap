@@ -43,9 +43,9 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
             if (!item) return proj;
             return {
               ...proj,
-              name: proj.id === 'corset-01' ? proj.name : (item.name && item.name.trim() ? item.name : proj.name),
-              title: item.title && item.title.trim() ? item.title : proj.title,
-              description: proj.id === 'corset-01' ? proj.description : (item.description && item.description.trim() ? item.description : proj.description),
+              name: ['corset-01', 'corset-02'].includes(proj.id) ? proj.name : (item.name && item.name.trim() ? item.name : proj.name),
+              title: proj.id === 'corset-02' ? proj.title : (item.title && item.title.trim() ? item.title : proj.title),
+              description: ['corset-01', 'corset-02'].includes(proj.id) ? proj.description : (item.description && item.description.trim() ? item.description : proj.description),
               images: proj.images,
             };
           });
@@ -96,9 +96,9 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
             });
             return {
               ...proj,
-              name: proj.id === 'corset-01' ? proj.name : (sec.name || proj.name),
-              title: sec.title || proj.title,
-              description: proj.id === 'corset-01' ? proj.description : (sec.description || proj.description),
+              name: ['corset-01', 'corset-02'].includes(proj.id) ? proj.name : (sec.name || proj.name),
+              title: proj.id === 'corset-02' ? proj.title : (sec.title || proj.title),
+              description: ['corset-01', 'corset-02'].includes(proj.id) ? proj.description : (sec.description || proj.description),
               images: mergedImages,
             };
           });
