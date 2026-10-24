@@ -119,6 +119,21 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
   const [hoveredCategory, setHoveredCategory] = useState<AppMode | null>(null);
   const [isManualPaused, setIsManualPaused] = useState(false);
   const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false);
+  const projectsMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (projectsMenuRef.current && !projectsMenuRef.current.contains(e.target as Node)) {
+        setIsProjectsMenuOpen(false);
+      }
+    };
+    if (isProjectsMenuOpen) {
+      document.addEventListener('pointerdown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsideClick);
+    };
+  }, [isProjectsMenuOpen]);
 
   // Dynamic responsive dimensions for Clock Container
   const clockContainerRef = useRef<HTMLDivElement>(null);
@@ -469,32 +484,19 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
               ABOUT ME
             </button>
             <span className="text-pink-300 text-xs font-mono select-none px-0.5">|</span>
-            <div className="relative" onMouseLeave={() => setIsProjectsMenuOpen(false)}>
+            <div ref={projectsMenuRef} className="relative">
               <button
                 type="button"
-                onClick={() => {
-                  const supportsHover = window.matchMedia('(hover: hover)').matches;
-                  setIsProjectsMenuOpen((open) => supportsHover || !open);
-                }}
-                onMouseEnter={() => {
-                  if (window.matchMedia('(hover: hover)').matches) {
-                    setIsProjectsMenuOpen(true);
-                  }
-                }}
+                onClick={() => setIsProjectsMenuOpen((prev) => !prev)}
                 aria-expanded={isProjectsMenuOpen}
                 aria-haspopup="true"
-                className="px-2 sm:px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-mono tracking-wider font-bold text-pink-900 hover:text-[#701a35] hover:bg-pink-200/60 transition-all whitespace-nowrap cursor-pointer"
+                className="px-2 sm:px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-mono tracking-wider font-bold text-pink-900 hover:text-[#701a35] hover:bg-pink-200/60 transition-all whitespace-nowrap cursor-pointer flex items-center space-x-1"
               >
-                PROJECTS
+                <span>PROJECTS</span>
               </button>
               {isProjectsMenuOpen && (
                 <div
-                  className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 rounded-xl border border-pink-200 bg-white p-2 shadow-xl"
-                  onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-                      setIsProjectsMenuOpen(false);
-                    }
-                  }}
+                  className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 rounded-xl border border-pink-200 bg-white p-2 shadow-xl animate-in fade-in zoom-in-95 duration-150"
                 >
                   {PROJECT_CATEGORIES.map((category) => (
                     <button
@@ -504,7 +506,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
                         setIsProjectsMenuOpen(false);
                         onSelectOption(category.id);
                       }}
-                      className="block w-full rounded-lg px-3 py-2 text-left transition-colors hover:bg-pink-50 focus:bg-pink-50 focus:outline-none"
+                      className="block w-full rounded-lg px-3 py-2 text-left transition-colors hover:bg-pink-50 cursor-pointer"
                     >
                       <span className="block text-xs font-mono font-bold tracking-wide text-pink-900">
                         {category.id === 'corsets' ? 'CORSETS' : category.title}
@@ -639,15 +641,26 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
                   transformOrigin: 'center center',
                   willChange: 'transform',
                   zIndex: isHovered ? 38 : 25,
+                  touchAction: 'manipulation',
                 }}
                 onMouseEnter={() => setHoveredCategory(cat.id)}
                 onMouseLeave={() => setHoveredCategory(null)}
-                onTouchStart={() => setHoveredCategory(cat.id)}
-                onClick={() => onSelectOption(cat.id)}
+                onPointerUp={(e) => {
+                  e.stopPropagation();
+                  onSelectOption(cat.id);
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectOption(cat.id);
+                }}
               >
                 <motion.div
                   whileHover={{ scale: 1.06 }}
                   whileTap={{ scale: 0.96 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectOption(cat.id);
+                  }}
                   className={`
                     w-[94px] sm:w-[114px] md:w-[124px]
                     p-1.5 sm:p-2 md:p-2.5

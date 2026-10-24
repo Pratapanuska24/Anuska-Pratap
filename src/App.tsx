@@ -159,7 +159,7 @@ export default function App() {
   const handleSelectCategory = useCallback((category: AppMode) => {
     playPageFlipSound(soundEnabled);
     updateMode(category);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [soundEnabled, updateMode]);
 
   // Return to Page 2 Menu Index
