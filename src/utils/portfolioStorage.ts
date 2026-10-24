@@ -739,10 +739,10 @@ export const defaultCorsetEditorialSections: CorsetEditorialSection[] = [
   },
   {
     id: 'corset-04',
-    title: 'CORSET 04 — Corset',
-    name: '',
+    title: 'CORSET 04 — THE BOLD BADDIE',
+    name: 'THE BOLD BADDIE',
     images: [corset4ImageC51, corset4ImageC52, corset4ImageC53, corset4ImageC54],
-    description: '',
+    description: 'This corset is a bold fusion of elegance and drama, designed to create a striking visual contrast through texture, structure, and transparency. Crafted with black satin pleats along the bust area, the garment highlights sculpted detailing and refined craftsmanship while enhancing the silhouette with a luxurious finish.',
   },
 ];
 
