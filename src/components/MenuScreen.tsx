@@ -55,7 +55,7 @@ const CLOCK_CATEGORIES: ClockCategory[] = [
     indexNum: '01',
     title: 'ABOUT ME',
     headerLabel: 'ABOUT ME',
-    subtitle: 'IDENTITY & ARCHIVE',
+    subtitle: '',
     accentTag: 'DOSSIER',
     icon: User,
   },
@@ -95,7 +95,7 @@ const CLOCK_CATEGORIES: ClockCategory[] = [
     indexNum: '05',
     title: 'DIGITAL CANVAS',
     headerLabel: 'DIGITAL CANVAS',
-    subtitle: 'CIRCULAR ZERO-WASTE',
+    subtitle: '',
     accentTag: 'CIRCULAR',
     icon: Leaf,
   },
@@ -511,9 +511,11 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
                       <span className="block text-xs font-mono font-bold tracking-wide text-pink-900">
                         {category.id === 'corsets' ? 'CORSETS' : category.title}
                       </span>
-                      <span className="mt-0.5 block text-[10px] font-mono uppercase tracking-wider text-pink-700">
-                        {category.subtitle} · {category.accentTag}
-                      </span>
+                      {category.subtitle ? (
+                        <span className="mt-0.5 block text-[10px] font-mono uppercase tracking-wider text-pink-700">
+                          {category.subtitle} · {category.accentTag}
+                        </span>
+                      ) : null}
                     </button>
                   ))}
                 </div>
@@ -695,9 +697,11 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
                     <h3 className="text-[9.5px] sm:text-[11px] md:text-xs font-black tracking-tight text-pink-950 uppercase font-sans leading-tight">
                       {cat.title}
                     </h3>
-                    <p className="text-[6.5px] sm:text-[7.5px] md:text-[8px] font-mono text-pink-700 font-semibold uppercase tracking-wider mt-0.5 line-clamp-1">
-                      {cat.subtitle}
-                    </p>
+                    {cat.subtitle ? (
+                      <p className="text-[6.5px] sm:text-[7.5px] md:text-[8px] font-mono text-pink-700 font-semibold uppercase tracking-wider mt-0.5 line-clamp-1">
+                        {cat.subtitle}
+                      </p>
+                    ) : null}
                   </div>
                 </motion.div>
               </div>

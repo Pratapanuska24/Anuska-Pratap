@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { Sparkles } from 'lucide-react';
 import landingPageHero from '../assets/images/landing-page-hero.png';
 
 interface CoverScreenProps {
@@ -15,6 +16,18 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onFlipStart, onOpen })
     setIsFlipping(true);
     onFlipStart();
   };
+
+  // Allow pressing Enter or Space to open the portfolio
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.key === 'Enter' || e.key === ' ') && !isFlipping) {
+        e.preventDefault();
+        handleClick();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFlipping]);
 
   return (
     <div
@@ -40,7 +53,7 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onFlipStart, onOpen })
       >
         <button
           type="button"
-          aria-label="Open portfolio"
+          aria-label="Open portfolio — Tap to Explore"
           onClick={handleClick}
           disabled={isFlipping}
           className="absolute inset-0 block h-full w-full cursor-pointer overflow-hidden border-0 p-0"
@@ -55,6 +68,14 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onFlipStart, onOpen })
             className="h-full w-full object-contain"
             draggable={false}
           />
+
+          {/* Small elegant "Tap To Explore" prompt */}
+          <div className="absolute bottom-6 sm:bottom-9 left-1/2 -translate-x-1/2 pointer-events-none z-20">
+            <div className="flex items-center space-x-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/90 backdrop-blur-md border border-pink-300/90 shadow-md text-[#701a35] text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase transition-transform hover:scale-105">
+              <Sparkles className="w-3.5 h-3.5 text-pink-600 animate-pulse" />
+              <span>Tap To Explore</span>
+            </div>
+          </div>
         </button>
         <div
           aria-hidden="true"
