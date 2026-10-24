@@ -42,13 +42,13 @@ export const staticCorsetProjects: CorsetProject[] = [
     id: 'corset-01',
     number: '01',
     title: 'CORSET 01',
-    name: 'Hand-Embroidered White Corset',
+    name: 'THE REWOVEN STORY',
     images: [
       corset01ImageC11,
       corset01ImageC12,
       corset01ImageC13,
     ],
-    description: 'Bespoke hand-embroidered white corset top crafted with fine boning, tailored paneling, and delicate colorful floral line-art embroidery.',
+    description: 'Crafted from upcycled denim, this corset transforms discarded fabric into a statement of sustainable fashion. The structured silhouette is balanced with intricate embroidery details, adding softness and artistry to the rugged texture of denim. Every stitch reflects the harmony between strength and delicacy, turning reclaimed material into wearable art.',
   },
   {
     id: 'corset-02',

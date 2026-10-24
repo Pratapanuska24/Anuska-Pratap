@@ -43,9 +43,9 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
             if (!item) return proj;
             return {
               ...proj,
-              name: item.name && item.name.trim() ? item.name : proj.name,
+              name: proj.id === 'corset-01' ? proj.name : (item.name && item.name.trim() ? item.name : proj.name),
               title: item.title && item.title.trim() ? item.title : proj.title,
-              description: item.description && item.description.trim() ? item.description : proj.description,
+              description: proj.id === 'corset-01' ? proj.description : (item.description && item.description.trim() ? item.description : proj.description),
               images: proj.images,
             };
           });
@@ -96,9 +96,9 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
             });
             return {
               ...proj,
-              name: sec.name || proj.name,
+              name: proj.id === 'corset-01' ? proj.name : (sec.name || proj.name),
               title: sec.title || proj.title,
-              description: sec.description || proj.description,
+              description: proj.id === 'corset-01' ? proj.description : (sec.description || proj.description),
               images: mergedImages,
             };
           });
