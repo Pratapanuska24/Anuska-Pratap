@@ -1,0 +1,93 @@
+import corset01ImageC11 from '../assets/images/C1.1.jpg';
+import corset01ImageC12 from '../assets/images/C1.2.png';
+import corset01ImageC13 from '../assets/images/C1.3.jpg';
+import corset2ImageC41 from '../assets/images/C4.1.jpg';
+import corset2ImageC42 from '../assets/images/C4.2.jpeg';
+import corset2ImageC43 from '../assets/images/C4.3.jpg';
+import corset2ImageC44 from '../assets/images/C4.4.jpeg';
+import corset2ImageC45 from '../assets/images/C4.5.jpeg';
+import corset3ImageC1 from '../assets/images/C1.jpeg';
+import corset3ImageC2 from '../assets/images/C2.jpeg';
+import corset3ImageC3 from '../assets/images/C3.jpeg';
+import corset3ImageC4 from '../assets/images/C4.png';
+import corset4ImageC51 from '../assets/images/C5.1.jpeg';
+import corset4ImageC52 from '../assets/images/C5.2.jpeg';
+import corset4ImageC53 from '../assets/images/C5.3.jpeg';
+import corset4ImageC54 from '../assets/images/C5.4.jpeg';
+export interface CorsetProject {
+  id: string;
+  number: string;
+  title: string;
+  name: string;
+  /**
+   * Fixed image slots controlled strictly in code through AI Studio.
+   * Assign image imports or URLs to display, or set to null for a clean empty placeholder.
+   */
+  images: (string | null)[];
+  description: string;
+}
+
+/**
+ * STATIC CORSET PROJECT DEFINITIONS (Controlled exclusively via AI Studio)
+ * 
+ * Workflow to change images:
+ * 1. Import or specify the image path in this file
+ * 2. Assign it to the desired corset and slot index in the `images` array
+ * 3. Deploy/update the applet in AI Studio
+ * 
+ * Visitors on the public portfolio will see exactly the images assigned below.
+ */
+export const staticCorsetProjects: CorsetProject[] = [
+  {
+    id: 'corset-01',
+    number: '01',
+    title: 'CORSET 01',
+    name: 'Hand-Embroidered White Corset',
+    images: [
+      corset01ImageC11,
+      corset01ImageC12,
+      corset01ImageC13,
+    ],
+    description: 'Bespoke hand-embroidered white corset top crafted with fine boning, tailored paneling, and delicate colorful floral line-art embroidery.',
+  },
+  {
+    id: 'corset-02',
+    number: '02',
+    title: 'CORSET 02',
+    name: 'Corset',
+    images: [
+      corset2ImageC41,
+      corset2ImageC42,
+      corset2ImageC43,
+      corset2ImageC44,
+      corset2ImageC45,
+    ],
+    description: '',
+  },
+  {
+    id: 'corset-03',
+    number: '03',
+    title: 'CORSET 03',
+    name: 'My Bollywood Era',
+    images: [
+      corset3ImageC1,
+      corset3ImageC2,
+      corset3ImageC3,
+      corset3ImageC4,
+    ],
+    description: '',
+  },
+  {
+    id: 'corset-04',
+    number: '04',
+    title: 'CORSET 04',
+    name: 'Corset',
+    images: [
+      corset4ImageC51,
+      corset4ImageC52,
+      corset4ImageC53,
+      corset4ImageC54,
+    ],
+    description: '',
+  },
+];

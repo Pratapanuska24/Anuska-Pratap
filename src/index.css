@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@keyframes gentleVerticalGlide {
+  0% {
+    transform: translateY(-14px);
+  }
+  50% {
+    transform: translateY(14px);
+  }
+  100% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes straightWaveGlide {
+  0% {
+    transform: translateY(-16px);
+  }
+  50% {
+    transform: translateY(16px);
+  }
+  100% {
+    transform: translateY(-16px);
+  }
+}

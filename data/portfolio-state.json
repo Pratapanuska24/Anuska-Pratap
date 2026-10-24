@@ -1,0 +1,121 @@
+{
+  "dresses_editorial": [
+    {
+      "id": "dress-01",
+      "number": 1,
+      "title": "The Blush Pink",
+      "name": "The Blush Pink",
+      "images": [
+        "/src/assets/images/Cover%20D1.jpg",
+        "/src/assets/images/D1.jpeg",
+        "/src/assets/images/D2.jpeg",
+        "/src/assets/images/D3.jpeg"
+      ],
+      "description": ""
+    },
+    {
+      "id": "dress-02",
+      "number": 2,
+      "title": "The Midnight Dots",
+      "name": "The Midnight Dots",
+      "images": [
+        "/src/assets/images/Cover%20D2.jpg",
+        "/uploads/D2.1.jpeg",
+        "/uploads/D2.2.jpeg",
+        "/uploads/D2.3.jpeg"
+      ],
+      "description": ""
+    },
+    {
+      "id": "dress-03",
+      "number": 3,
+      "title": "The Velvet Noir",
+      "name": "The Velvet Noir",
+      "images": [
+        "/src/assets/images/Cover%20D3.jpg",
+        "/src/assets/images/D3.1.jpeg",
+        "/src/assets/images/D3.2.jpeg",
+        "/src/assets/images/D3.3.jpeg"
+      ],
+      "description": ""
+    }
+  ],
+  "_lastUpdated": "2026-10-22T17:14:14.397Z",
+  "personal_space": {
+    "photoUrl": "/src/assets/images/ME1.jpeg",
+    "introText": "Hey, I am Anuska Pratap, an extroverted, playful, and cheerful Fashion Designer who loves designing, styling, communicating, presenting and most importantly connecting with new people and learning from every interaction. Fashion has always been a space where I feel most alive. I enjoy exploring ideas, experimenting with creativity, and bringing stories to life through design. Welcome to my world of Fashion! To know more about me, my work and my creative journey, click on any icon to discover more."
+  },
+  "profile_data": {
+    "name": "Anuska Pratap",
+    "title": "Fashion Designer",
+    "email": "pratapanuska24@gmail.com",
+    "phone": "9668886970",
+    "profilePhoto": "/src/assets/images/MEE.jpeg",
+    "aboutMePhoto": "/src/assets/images/Anuska%20CV.jpg",
+    "shortIntroduction": "Hey, I am Anuska, a fashion design student , very passionate and inclined towards exploring and learning new. My work combines creativity with a strong interest in sustainability, Research and thoughtful material exploration. Through my designs, I enjoy experimenting with silhouettes, techniques, and materials to create pieces that tell a story while balancing aesthetics with purpose.",
+    "aboutMe": "Hi, I’m Anuska Pratap, a fashion designer with a playful spirit, a curious mind, and a love for exploring the unexpected. Raised in Kuwait and now pursuing my creative journey in India, my experiences have shaped the way I perceive fashion, culture, and identity. I love experimenting with silhouettes, textures, colours, and unconventional materials, constantly challenging myself to think beyond the ordinary. From corsetry and draping to textile exploration and sustainable design, I enjoy transforming ideas into something expressive and meaningful. For me, fashion is more than just clothing; it is a language through which I communicate, tell stories, and express emotions. I find inspiration in everyday experiences, different cultures, and the freedom to experiment without boundaries. I believe in embracing imperfections, questioning conventions, and finding beauty in the unexpected. This portfolio is a glimpse into my creative world, where curiosity meets craftsmanship and every design tells a story.",
+    "designPhilosophy": "True luxury lies in the balance between precision engineering and soul-stirring craftsmanship. By respecting traditional artisanal narratives while re-imagining them through contemporary, anatomically conscious tailoring, fashion becomes both timeless armor and poetic expression.",
+    "educationAndExperience": [
+      {
+        "id": "item-1",
+        "type": "education",
+        "title": "INDUS DESUGN SCHOOL",
+        "organization": "INDUS UNIVERSITY Ahmedabad · Fashion Designing",
+        "duration": "2023-27",
+        "details": "Minor Degree - Sustainability."
+      },
+      {
+        "id": "item-2",
+        "type": "education",
+        "title": "Indian Community School, Kuwait",
+        "organization": "Fashion Studies - 96% · CBSE",
+        "duration": "2021-23",
+        "details": "(10+2- 81%)"
+      }
+    ],
+    "skillCategories": [
+      {
+        "id": "cat-garment",
+        "name": "GARMENT MAKING",
+        "skills": [
+          "Bespoke Corsetry & Boning",
+          "Haute Couture Hand Stitching",
+          "Draping & Flat Pattern Cutting",
+          "Architectural Tailoring",
+          "Cupped Bodice Engineering"
+        ]
+      },
+      {
+        "id": "cat-digital",
+        "name": "DIGITAL & CAD",
+        "skills": [
+          "Adobe Illustrator (CAD & Technical Flats)",
+          "Adobe Photoshop (Digital Rendering & Moodboards)",
+          "CLO 3D (3D Garment Simulation)",
+          "InDesign (Tech Pack & Portfolio Layout)"
+        ]
+      },
+      {
+        "id": "cat-tech",
+        "name": "TECH PACK & SPEC",
+        "skills": [
+          "Technical Specification Sheets (Tech Packs)",
+          "Grading & Size Specification Charts",
+          "Bill of Materials (BOM)",
+          "Stitch Diagnostics & Quality Control"
+        ]
+      },
+      {
+        "id": "cat-craft",
+        "name": "HERITAGE CRAFT",
+        "skills": [
+          "Pattachitra Palm Leaf & Canvas Painting",
+          "Zardozi & Aari Hand Embroidery",
+          "Natural Indigo & Herbal Dyeing",
+          "Zero-Waste Pattern Draping",
+          "Handloom Brocade & Raw Silk Handling"
+        ]
+      }
+    ]
+  }
+}

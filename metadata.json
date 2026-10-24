@@ -1,0 +1,6 @@
+{
+  "name": "Anuska Pratap Portfolio",
+  "description": "A premium interactive fashion portfolio for Anuska Pratap featuring realistic page-flip experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
