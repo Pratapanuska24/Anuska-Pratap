@@ -359,15 +359,13 @@ export const DressesPage: React.FC<DressesPageProps> = ({
       className="min-h-screen bg-[#FFF5F7] text-stone-900 flex flex-col relative selection:bg-pink-300 selection:text-pink-950 font-sans"
     >
       {/* Top Header */}
-      <div className="relative z-20">
-        <PortfolioHeader
-          currentCategory="dresses"
-          title="DRAPERY OF DRESSES"
-          onBackToMenu={onBackToMenu}
-          onNavigateToCategory={onNavigateToCategory}
-          onBackToLanding={onBackToLanding}
-        />
-      </div>
+      <PortfolioHeader
+        currentCategory="dresses"
+        title="DRAPERY OF DRESSES"
+        onBackToMenu={onBackToMenu}
+        onNavigateToCategory={onNavigateToCategory}
+        onBackToLanding={onBackToLanding}
+      />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10 flex flex-col">

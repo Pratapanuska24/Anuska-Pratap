@@ -2,6 +2,7 @@ export type AppMode =
   | 'landing' 
   | 'menu' 
   | 'profile' 
+  | 'contact'
   | 'corsets' 
   | 'indian-wear' 
   | 'pattachitra' 

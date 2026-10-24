@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { CoverScreen } from './components/CoverScreen';
 import { MenuScreen } from './components/MenuScreen';
 import { ProfilePage } from './components/pages/ProfilePage';
+import { ContactPage } from './components/pages/ContactPage';
 import { CorsetsPage } from './components/pages/CorsetsPage';
 import { IndianWearPage } from './components/pages/IndianWearPage';
 import { PattachitraPage } from './components/pages/PattachitraPage';
@@ -14,6 +15,7 @@ const VALID_MODES: AppMode[] = [
   'landing',
   'menu',
   'profile',
+  'contact',
   'corsets',
   'indian-wear',
   'pattachitra',
@@ -211,6 +213,15 @@ export default function App() {
       {/* 3. DEDICATED CATEGORY: PROFILE */}
       {mode === 'profile' && (
         <ProfilePage 
+          onBackToMenu={handleReturnToMenu}
+          onNavigateToCategory={handleSelectCategory}
+          onBackToLanding={handleReturnToLanding}
+        />
+      )}
+
+      {/* 4. DEDICATED CATEGORY: CONTACT */}
+      {mode === 'contact' && (
+        <ContactPage 
           onBackToMenu={handleReturnToMenu}
           onNavigateToCategory={handleSelectCategory}
           onBackToLanding={handleReturnToLanding}

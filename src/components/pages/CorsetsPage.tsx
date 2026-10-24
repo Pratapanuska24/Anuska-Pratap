@@ -43,9 +43,9 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
             if (!item) return proj;
             return {
               ...proj,
-              name: ['corset-01', 'corset-02', 'corset-04'].includes(proj.id) ? proj.name : (item.name && item.name.trim() ? item.name : proj.name),
-              title: ['corset-02', 'corset-04'].includes(proj.id) ? proj.title : (item.title && item.title.trim() ? item.title : proj.title),
-              description: ['corset-01', 'corset-02', 'corset-04'].includes(proj.id) ? proj.description : (item.description && item.description.trim() ? item.description : proj.description),
+              name: ['corset-01', 'corset-02', 'corset-03', 'corset-04'].includes(proj.id) ? proj.name : (item.name && item.name.trim() ? item.name : proj.name),
+              title: ['corset-02', 'corset-03', 'corset-04'].includes(proj.id) ? proj.title : (item.title && item.title.trim() ? item.title : proj.title),
+              description: ['corset-01', 'corset-02', 'corset-03', 'corset-04'].includes(proj.id) ? proj.description : (item.description && item.description.trim() ? item.description : proj.description),
               images: proj.images,
             };
           });
@@ -96,9 +96,9 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
             });
             return {
               ...proj,
-              name: ['corset-01', 'corset-02', 'corset-04'].includes(proj.id) ? proj.name : (sec.name || proj.name),
-              title: ['corset-02', 'corset-04'].includes(proj.id) ? proj.title : (sec.title || proj.title),
-              description: ['corset-01', 'corset-02', 'corset-04'].includes(proj.id) ? proj.description : (sec.description || proj.description),
+              name: ['corset-01', 'corset-02', 'corset-03', 'corset-04'].includes(proj.id) ? proj.name : (sec.name || proj.name),
+              title: ['corset-02', 'corset-03', 'corset-04'].includes(proj.id) ? proj.title : (sec.title || proj.title),
+              description: ['corset-01', 'corset-02', 'corset-03', 'corset-04'].includes(proj.id) ? proj.description : (sec.description || proj.description),
               images: mergedImages,
             };
           });
@@ -251,7 +251,7 @@ export const CorsetsPage: React.FC<CorsetsPageProps> = ({
 
   return (
     <div
-      className="min-h-screen w-full flex flex-col text-zinc-900 select-none font-sans overflow-x-hidden relative bg-[#FFF5F7] selection:bg-pink-500 selection:text-white"
+      className="min-h-screen w-full flex flex-col text-zinc-900 select-none font-sans overflow-x-clip relative bg-[#FFF5F7] selection:bg-pink-500 selection:text-white"
     >
 
 

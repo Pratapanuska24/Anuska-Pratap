@@ -34,7 +34,7 @@ export const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({
   const headerNavItems: Array<{ id: AppMode; label: string }> = [
     { id: 'profile', label: 'About Me' },
     { id: 'menu', label: 'Projects' },
-    { id: 'profile', label: 'Contact' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   const handleNavClick = (id: AppMode) => {
@@ -54,7 +54,7 @@ export const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-2 border-pink-200 shadow-xs px-3 sm:px-6 py-2.5 select-none font-sans">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-pink-200 shadow-sm px-3 sm:px-6 py-2.5 select-none font-sans">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         <button
           type="button"

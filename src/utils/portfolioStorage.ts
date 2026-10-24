@@ -727,15 +727,15 @@ export const defaultCorsetEditorialSections: CorsetEditorialSection[] = [
   },
   {
     id: 'corset-03',
-    title: 'CORSET 03 — My Bollywood Era',
-    name: 'My Bollywood Era',
+    title: 'CORSET 03 — MY BOLLYWOOD ERA',
+    name: 'MY BOLLYWOOD ERA',
     images: [
       corset3ImageC1,
       corset3ImageC2,
       corset3ImageC3,
       corset3ImageC4,
     ],
-    description: '',
+    description: 'Inspired by the drama, glamour, and timeless allure of Bollywood, this corset celebrates bold femininity and cinematic elegance. Its construction features multiple layers, creating depth, texture, and a sculpted silhouette. The rich burgundy tones and intricate surface detailing capture the essence of a statement piece, blending traditional glamour with contemporary styling.',
   },
   {
     id: 'corset-04',

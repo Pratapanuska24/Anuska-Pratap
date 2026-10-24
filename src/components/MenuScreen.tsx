@@ -401,7 +401,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
 
   return (
     <div 
-      className="min-h-screen w-full flex flex-col justify-between text-zinc-900 select-none font-sans overflow-x-hidden relative"
+      className="min-h-screen w-full flex flex-col justify-between text-zinc-900 select-none font-sans overflow-x-clip relative"
       style={{
         backgroundImage: `repeating-linear-gradient(
           90deg,
@@ -432,7 +432,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
       {/* 1. TOP HEADER: THREE PRIMARY OPTIONS WITH PROJECT TITLES BELOW */}
       {/* CONTACT | ABOUT ME | PROJECTS */}
       {/* ===================================================================== */}
-      <header className="relative z-50 bg-white/95 backdrop-blur-md border-b-2 border-pink-200 shadow-xs px-3 sm:px-6 py-2.5 shrink-0">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-pink-200 shadow-sm px-3 sm:px-6 py-2.5 shrink-0">
         <div className="max-w-7xl mx-auto flex flex-col gap-2.5">
           
           {/* Left: Return to Landing Page & Name */}
@@ -520,7 +520,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({ onSelectOption, onBackTo
             <span className="text-pink-300 text-xs font-mono select-none px-0.5">|</span>
             <button
               type="button"
-              onClick={() => onSelectOption('profile')}
+              onClick={() => onSelectOption('contact')}
               className="px-2 sm:px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-mono tracking-wider font-bold text-pink-900 hover:text-[#701a35] hover:bg-pink-200/60 transition-all whitespace-nowrap cursor-pointer"
             >
               CONTACT
