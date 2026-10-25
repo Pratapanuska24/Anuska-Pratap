@@ -736,9 +736,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               </div>
               <div>
                 <h3 className="text-xl font-black text-pink-950 uppercase tracking-wide">ABOUT ME</h3>
-                <p className="text-xs font-mono text-pink-700 uppercase tracking-widest">
-                  BIOGRAPHY & DESIGN PRACTICE
-                </p>
               </div>
             </div>
 
@@ -906,9 +903,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </div>
               )}
 
-              <p className="text-[10px] font-mono text-pink-700 mt-2.5 text-center">
-                Visual assets are preserved in local portfolio storage.
-              </p>
             </div>
 
             {/* RIGHT SIDE: Large, Clearly Visible Editable Text Area */}
@@ -924,8 +918,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     </label>
 
                     <div className="flex items-center space-x-3 text-[11px] font-mono text-pink-800">
-                      <span>{(aboutMeDraft.trim().match(/\S+/g) || []).length} words</span>
-                      <span>•</span>
                       <span>{aboutMeDraft.length} chars</span>
                     </div>
                   </div>
@@ -996,7 +988,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   {/* Subtle Footer Information Strip */}
                   <div className="mt-8 pt-4 border-t border-pink-200/60 flex items-center justify-between text-[11px] font-mono text-pink-800">
                     <span className="text-pink-700">ABOUT ME</span>
-                    <span>{(profile.aboutMe.trim().match(/\S+/g) || []).length} Words</span>
                   </div>
                 </div>
               )}
@@ -1005,10 +996,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
 
           </div>
 
-          <div className="mt-8 pt-4 border-t border-pink-100 flex items-center justify-between text-[10px] font-mono text-pink-800">
-            <span>DOSSIER ITEM 01</span>
-            <span>BIOGRAPHICAL STATEMENT & DESIGN PRACTICE</span>
-          </div>
         </section>
 
         {/* ==================== EDUCATION AND EXPERIENCE SECTION ==================== */}
@@ -1113,11 +1100,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     )}
                   </div>
 
-                  <div className="mt-4 pt-2.5 border-t border-pink-200/60 flex items-center justify-between text-[10px] font-mono text-pink-800">
-                    <div className="flex items-center space-x-1.5">
-                      <FileCheck className="w-3.5 h-3.5 text-pink-600" />
-                      <span>Verified Portfolio Dossier</span>
-                    </div>
+                  <div className="mt-4 pt-2.5 border-t border-pink-200/60 flex items-center justify-end text-[10px] font-mono text-pink-800">
                     <span className="text-pink-600 font-bold">#{eduIdx + 1}</span>
                   </div>
                 </div>
