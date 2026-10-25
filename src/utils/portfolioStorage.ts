@@ -162,9 +162,43 @@ export const defaultProfileData: ProfileData = {
 };
 
 function migrateProfilePresentation(data: ProfileData): { profile: ProfileData; migrated: boolean } {
+  const requestedSkillCategories = [
+    {
+      id: 'cat-tech',
+      name: 'TECH PACK',
+      skills: [
+        'Technical specification sheets (tech packs)',
+        'Flat Sketches',
+        'Bill of Measurments',
+        'Bill of Materials',
+      ],
+    },
+    {
+      id: 'cat-craft',
+      name: 'CRAFTS',
+      skills: [
+        'Embroidery (Katha Aari Chmabarumal Pipli etc)',
+        'Block Printing',
+        'Dyeing',
+      ],
+    },
+  ];
+  const skillCategories = (data.skillCategories || []).map((category) => {
+    const requested = requestedSkillCategories.find((item) => item.id === category.id);
+    if (!requested) return category;
+    if (category.name === requested.name && JSON.stringify(category.skills) === JSON.stringify(requested.skills)) {
+      return category;
+    }
+    return { ...category, name: requested.name, skills: requested.skills };
+  });
+  const skillsChanged = skillCategories.some((category, index) =>
+    category !== data.skillCategories[index],
+  );
+  const profileWithUpdatedSkills = skillsChanged ? { ...data, skillCategories } : data;
+
   try {
     if (localStorage.getItem(PROFILE_PRESENTATION_MIGRATION_KEY) === 'v3') {
-      return { profile: data, migrated: false };
+      return { profile: profileWithUpdatedSkills, migrated: skillsChanged };
     }
   } catch (error) {
     console.warn('Could not check profile presentation migration state:', error);
@@ -172,7 +206,7 @@ function migrateProfilePresentation(data: ProfileData): { profile: ProfileData; 
 
   return {
     profile: {
-      ...data,
+      ...profileWithUpdatedSkills,
       aboutMePhoto: anuskaCV,
     },
     migrated: true,
