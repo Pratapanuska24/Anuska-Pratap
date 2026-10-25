@@ -105,7 +105,7 @@ const CLOCK_CATEGORIES: ClockCategory[] = [
     indexNum: '06',
     title: 'DRESSES',
     headerLabel: 'DRESSES',
-    subtitle: 'SCULPTURAL DRAPERY',
+    subtitle: '',
     accentTag: 'SILHOUETTE',
     icon: Scissors,
   },
