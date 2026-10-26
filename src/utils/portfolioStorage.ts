@@ -106,7 +106,7 @@ export const defaultProfileData: ProfileData = {
     {
       id: 'item-1',
       type: 'education',
-      title: 'INDUS DESUGN SCHOOL',
+      title: 'INDUS DESIGN SCHOOL',
       organization: 'INDUS UNIVERSITY Ahmedabad · Fashion Designing',
       duration: '2023-27',
       details: 'Minor Degree - Sustainability.',
@@ -153,7 +153,7 @@ export const defaultProfileData: ProfileData = {
       id: 'cat-craft',
       name: 'CRAFTS',
       skills: [
-        'Embroidery (Katha Aari Chmabarumal Pipli etc)',
+        'Embroidery (Katha Aari Chambarumal Pipli etc)',
         'Block Printing',
         'Dyeing',
       ],
@@ -177,7 +177,7 @@ function migrateProfilePresentation(data: ProfileData): { profile: ProfileData; 
       id: 'cat-craft',
       name: 'CRAFTS',
       skills: [
-        'Embroidery (Katha Aari Chmabarumal Pipli etc)',
+        'Embroidery (Katha Aari Chambarumal Pipli etc)',
         'Block Printing',
         'Dyeing',
       ],

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles } from 'lucide-react';
+import { MousePointer2, Sparkles } from 'lucide-react';
 import landingPageHero from '../assets/images/landing-page-hero.png';
 
 interface CoverScreenProps {
@@ -68,6 +68,17 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onFlipStart, onOpen })
             className="h-full w-full object-contain"
             draggable={false}
           />
+
+          {/* Prompt beneath the title in the original cover artwork */}
+          <div className="absolute left-[68%] top-[61%] z-20 -translate-x-1/2 pointer-events-none text-[#701a35]">
+            <span className="block whitespace-nowrap rounded-full border border-pink-300/80 bg-white/90 px-2.5 py-1 text-[10px] sm:text-xs font-mono font-bold tracking-wide shadow-sm">
+              Click Here
+            </span>
+            <MousePointer2
+              aria-hidden="true"
+              className="absolute -right-3 -bottom-4 h-5 w-5 rotate-[-18deg] fill-white text-[#701a35] drop-shadow-md animate-bounce"
+            />
+          </div>
 
           {/* Small elegant "Tap To Explore" prompt */}
           <div className="absolute bottom-6 sm:bottom-9 left-1/2 -translate-x-1/2 pointer-events-none z-20">
